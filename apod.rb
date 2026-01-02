@@ -10,10 +10,8 @@ require 'json'
 # https://api.nasa.gov/#signUp
 APOD_API_KEY = nil
 start_date = Date.new(2024, 1, 1)
-# TODAY = Date.today # ('%Y-%m-%d')
 
 while start_date <= Date.today
-  # date_string = current_date.strftime('%Y-%m-%d')
   date_string = start_date.strftime('%Y-%m-%d')
   response = HTTParty.get("https://api.nasa.gov/planetary/apod?api_key=#{APOD_API_KEY}&date=#{date_string}&concept_tags=False")
 
