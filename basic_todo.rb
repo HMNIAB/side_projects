@@ -6,6 +6,11 @@
 # LAST UPDATED: 2025-12-31
 # AUTHOR: HMNIAB
 
+# KNOWN ISSUES:
+# Viewing todo repeatedly results in duplication of all tasks. Fixed? [No]
+# Writing todo to file results in no newline between tasks.    Fixed? [No]
+# Reading todo fule results in one line for all tasks.         Fixed? [No]
+
 todo = []
 
 def show_main_menu
@@ -46,7 +51,7 @@ end
 def todo_file_read(todo)
   return unless File.exist?('.tasks')
 
-  tasks = File.readlines('.tasks', chomp: true)
+  tasks = File.readlines('.tasks')
   tasks.each do |task|
     todo.push(task)
   end
@@ -69,7 +74,6 @@ loop do
     remove_from_todo(todo)
     system('clear')
   when 'Q'
-    # this is a hack but it empties the file when the todo is empty....
     todo_file_write(todo)
     system('clear')
     exit
